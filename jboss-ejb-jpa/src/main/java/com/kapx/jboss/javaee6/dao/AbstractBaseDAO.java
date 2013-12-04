@@ -7,10 +7,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+/**
+ * Abstract JPA based DAO class consisting of common data access operations.
+ * 
+ * @author KAPIL
+ * 
+ * @param <T>
+ *            Type of persistence object.
+ * @param <PK>
+ *            Datatype of Serializable primary key
+ */
 public abstract class AbstractBaseDAO<T, PK extends Serializable> {
 
 	@PersistenceContext(unitName = "mysql-persistence-unit")
 	private EntityManager entityManager;
+
 	private Class<T> persistentClass;
 
 	protected AbstractBaseDAO(final Class<T> persistentClass) {
@@ -46,6 +57,5 @@ public abstract class AbstractBaseDAO<T, PK extends Serializable> {
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
-
 	}
 }
