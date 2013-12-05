@@ -2,6 +2,7 @@ package com.kapx.jboss.javaee6.dao.impl;
 
 import java.util.List;
 
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -10,6 +11,7 @@ import com.kapx.jboss.javaee6.dao.AbstractBaseDAO;
 import com.kapx.jboss.javaee6.dao.RoleDAO;
 import com.kapx.jboss.javaee6.entity.Role;
 
+@Named("roleDAO")
 public class RoleDAOImpl extends AbstractBaseDAO<Role, Long> implements RoleDAO {
 
 	@PersistenceContext(unitName = "mysql-persistence-unit")

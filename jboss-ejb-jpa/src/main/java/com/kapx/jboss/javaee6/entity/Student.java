@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class Student {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Employee {
 	@Column(name = "EMAIL")
 	private String email;
 
-	public Employee() {
+	public Student() {
 	}
 
 	public Long getId() {

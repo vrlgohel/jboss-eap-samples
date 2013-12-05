@@ -65,8 +65,23 @@ public class UserServiceTest {
 	@Test
 	@InSequence(2)
 	public void test_insert_user() throws Exception {
-		final String roleName = "ROLE_ADMIN";
-		Role role = userServiceEJB.findByRole(roleName);
+
+		Role roleAdmin = userServiceEJB.findByRole("ROLE_ADMIN");
+		User adminUser = new User();
+		adminUser.setFirstName("DE");
+		adminUser.setLastName("KAPX");
+		adminUser.setUsername("dekapx");
+		adminUser.setPassword("password");
+		adminUser.setEmail("dekapx@gmail.com");
+		adminUser.setInsertTime(new Date());
+		adminUser.setUpdateTime(new Date());
+		adminUser.setRole(roleAdmin);
+
+		User entity = userServiceEJB.save(adminUser);
+		assertNotNull(entity);
+		assertNotNull(entity.getId());
+
+		Role roleUser = userServiceEJB.findByRole("ROLE_USER");
 		User user = new User();
 		user.setFirstName("DE");
 		user.setLastName("KAPX");
@@ -75,9 +90,9 @@ public class UserServiceTest {
 		user.setEmail("dekapx@gmail.com");
 		user.setInsertTime(new Date());
 		user.setUpdateTime(new Date());
-		user.setRole(role);
+		user.setRole(roleUser);
 
-		User entity = userServiceEJB.save(user);
+		entity = userServiceEJB.save(user);
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
 	}
