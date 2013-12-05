@@ -1,7 +1,6 @@
 package com.kapx.jboss.javaee6.service.impl;
 
 import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,14 +12,12 @@ import com.kapx.jboss.javaee6.dao.RoleDAO;
 import com.kapx.jboss.javaee6.dao.UserDAO;
 import com.kapx.jboss.javaee6.entity.Role;
 import com.kapx.jboss.javaee6.entity.User;
-import com.kapx.jboss.javaee6.service.UserServiceLocal;
-import com.kapx.jboss.javaee6.service.UserServiceRemote;
+import com.kapx.jboss.javaee6.service.UserService;
 
 @Stateless
-@Local(UserServiceLocal.class)
-@Remote(UserServiceRemote.class)
+@Local(UserService.class)
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class UserServiceBean implements UserServiceLocal, UserServiceRemote {
+public class UserServiceBean implements UserService {
 
 	@Inject
 	private UserDAO userDAO;

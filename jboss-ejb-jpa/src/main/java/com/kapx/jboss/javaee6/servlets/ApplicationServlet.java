@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.kapx.jboss.javaee6.entity.Role;
 import com.kapx.jboss.javaee6.entity.User;
-import com.kapx.jboss.javaee6.service.UserServiceLocal;
+import com.kapx.jboss.javaee6.service.UserService;
 
 @WebServlet(name = "ApplicationServlet", urlPatterns = { "/ApplicationServlet" })
 public class ApplicationServlet extends HttpServlet {
@@ -24,7 +24,7 @@ public class ApplicationServlet extends HttpServlet {
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationServlet.class.getName());
 
 	@EJB
-	private UserServiceLocal userServiceEJB;
+	private UserService userServiceEJB;
 
 	public ApplicationServlet() {
 		LOG.info("ApplicationServlet initialized...");

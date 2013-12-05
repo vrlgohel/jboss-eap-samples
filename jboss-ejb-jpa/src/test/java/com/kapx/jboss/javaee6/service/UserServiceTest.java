@@ -3,6 +3,8 @@ package com.kapx.jboss.javaee6.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -29,8 +31,7 @@ public class UserServiceTest {
 	@Deployment(name = "ejb-jpa-test")
 	public static Archive<?> createTestArchive() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "ejb-jpa-test.war");
-		war.addClass(UserServiceLocal.class);
-		war.addClass(UserServiceRemote.class);
+		war.addClass(UserService.class);
 		war.addClass(UserServiceBean.class);
 
 		war.addClass(Role.class);
@@ -50,7 +51,7 @@ public class UserServiceTest {
 	}
 
 	@EJB
-	private UserServiceLocal userServiceEJB;
+	private UserService userServiceEJB;
 
 	@Test
 	@InSequence(1)
@@ -59,5 +60,25 @@ public class UserServiceTest {
 		Role role = userServiceEJB.findByRole(roleName);
 		assertNotNull(role);
 		assertEquals(roleName, role.getRole());
+	}
+
+	@Test
+	@InSequence(2)
+	public void test_insert_user() throws Exception {
+		final String roleName = "ROLE_ADMIN";
+		Role role = userServiceEJB.findByRole(roleName);
+		User user = new User();
+		user.setFirstName("DE");
+		user.setLastName("KAPX");
+		user.setUsername("dekapx");
+		user.setPassword("password");
+		user.setEmail("dekapx@gmail.com");
+		user.setInsertTime(new Date());
+		user.setUpdateTime(new Date());
+		user.setRole(role);
+
+		User entity = userServiceEJB.save(user);
+		assertNotNull(entity);
+		assertNotNull(entity.getId());
 	}
 }
