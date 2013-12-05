@@ -15,7 +15,8 @@ import javax.persistence.TypedQuery;
  * @param <T>
  *            Type of persistence object.
  * @param <PK>
- *            Datatype of Serializable primary key
+ *            type of Serializable primary key
+ * 
  */
 public abstract class AbstractBaseDAO<T, PK extends Serializable> {
 

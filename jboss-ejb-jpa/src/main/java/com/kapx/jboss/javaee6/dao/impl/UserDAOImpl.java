@@ -26,4 +26,8 @@ public class UserDAOImpl extends AbstractBaseDAO<User, Long> implements UserDAO 
 		return entity;
 	}
 
+	public void delete(final User entity) {
+		LOG.debug("Removing User entity for ID {}", entity.getId());
+		super.delete(entity);
+	}
 }
