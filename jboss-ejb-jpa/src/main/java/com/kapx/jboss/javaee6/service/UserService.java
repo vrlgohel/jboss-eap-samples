@@ -8,9 +8,11 @@ import com.kapx.jboss.javaee6.entity.User;
 public interface UserService {
 	User save(User entity);
 
+	User findUser(Long pk);
+
 	Role save(Role entity);
 
-	Role findByRole(String roleName);
+	Role findByRoleName(String roleName);
 
 	Collection<Role> findAllRoles();
 }

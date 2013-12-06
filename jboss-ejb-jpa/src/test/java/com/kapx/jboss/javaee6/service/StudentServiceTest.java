@@ -60,7 +60,7 @@ public class StudentServiceTest {
 		student = studentServiceEJB.save(student);
 		assertNotNull(student);
 		assertNotNull(student.getId());
-		LOG.info("Create new Student with ID {}", student.getId());
+		LOG.info("Create new Student with ID [{}]", student.getId());
 	}
 
 }

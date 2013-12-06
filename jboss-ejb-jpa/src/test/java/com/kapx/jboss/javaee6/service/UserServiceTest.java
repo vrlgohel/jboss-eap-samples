@@ -70,7 +70,7 @@ public class UserServiceTest {
 		entity = userServiceEJB.save(new Role("ROLE_USER"));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
-		LOG.info("Create new Role with ID {}", entity.getId());
+		LOG.info("Create new Role with ID [{}]", entity.getId());
 	}
 
 	@Test
@@ -79,18 +79,18 @@ public class UserServiceTest {
 		final Collection<Role> roles = userServiceEJB.findAllRoles();
 		assertNotNull(roles);
 		assertEquals(2, roles.size());
-		LOG.info("Number of roles are {} returned by findAllRoles API", roles.size());
+		LOG.info("Number of roles are [{}] returned by findAllRoles API", roles.size());
 	}
 
 	@Test
 	@InSequence(3)
 	public void test_findByRole() throws Exception {
 		final String roleName = "ROLE_ADMIN";
-		Role entity = userServiceEJB.findByRole(roleName);
+		Role entity = userServiceEJB.findByRoleName(roleName);
 		assertNotNull(entity);
 		assertEquals(roleName, entity.getRole());
 
-		LOG.info("Find Role with ID {} and role name {}", entity.getId(), entity.getRole());
+		LOG.info("Find Role with ID [{}] and role name [{}]", entity.getId(), entity.getRole());
 	}
 
 	@Test
@@ -99,18 +99,28 @@ public class UserServiceTest {
 		User entity = null;
 		Role role = null;
 
-		role = userServiceEJB.findByRole("ROLE_ADMIN");
+		role = userServiceEJB.findByRoleName("ROLE_ADMIN");
 
 		entity = userServiceEJB.save(new User("admin", "password", "Admin", "User", "admin@myemail.com", role));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
-		LOG.info("Create new User entity with ID {} and username {}", entity.getId(), entity.getUsername());
+		LOG.info("Create new User entity with ID [{}] and username [{}]", entity.getId(), entity.getUsername());
 
-		role = userServiceEJB.findByRole("ROLE_USER");
+		role = userServiceEJB.findByRoleName("ROLE_USER");
 
 		entity = userServiceEJB.save(new User("test-user", "password", "Test", "User", "test-user@myemail.com", role));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
-		LOG.info("Create new User entity with ID {} and username {}", entity.getId(), entity.getUsername());
+		LOG.info("Create new User entity with ID [{}] and username [{}]", entity.getId(), entity.getUsername());
+	}
+
+	@Test
+	@InSequence(5)
+	public void test_find_user_byPK() throws Exception {
+		final Long pk = 1L;
+		User entity = userServiceEJB.findUser(pk);
+		assertNotNull(entity);
+		assertEquals("admin", entity.getUsername());
+		LOG.info("Find User by primary key [{}] with username [{}]", pk, entity.getUsername());
 	}
 }

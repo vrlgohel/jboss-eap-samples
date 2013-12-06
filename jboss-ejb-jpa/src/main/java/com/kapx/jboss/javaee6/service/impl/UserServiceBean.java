@@ -35,7 +35,7 @@ public class UserServiceBean implements UserService {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Role findByRole(final String roleName) {
+	public Role findByRoleName(final String roleName) {
 		return roleDAO.findByRole(roleName);
 	}
 
@@ -48,6 +48,11 @@ public class UserServiceBean implements UserService {
 	@Override
 	public Collection<Role> findAllRoles() {
 		return roleDAO.findAllRoles();
+	}
+
+	@Override
+	public User findUser(final Long pk) {
+		return userDAO.findUser(pk);
 	}
 
 }

@@ -30,4 +30,9 @@ public class UserDAOImpl extends AbstractJpaDAO<User, Long> implements UserDAO {
 		LOG.info("Removing User entity for ID {}", entity.getId());
 		super.delete(entity);
 	}
+
+	@Override
+	public User findUser(final Long pk) {
+		return super.find(pk, User.class);
+	}
 }
