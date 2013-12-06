@@ -1,5 +1,7 @@
 package com.kapx.jboss.javaee6.dao.impl;
 
+import java.util.Collection;
+
 import javax.inject.Named;
 
 import org.slf4j.Logger;
@@ -29,6 +31,11 @@ public class StudentDAOImpl extends AbstractBaseDAO<Student, Long> implements St
 	public void delete(final Student entity) {
 		LOG.info("Removing Student entity for ID {}", entity.getId());
 		super.delete(entity);
+	}
+
+	@Override
+	public Collection<Student> findAllStudents() {
+		return super.findAll();
 	}
 
 }

@@ -33,9 +33,9 @@ import com.kapx.jboss.javaee6.service.impl.UserServiceBean;
 public class UserServiceTest {
 	private static final Logger LOG = LoggerFactory.getLogger(UserServiceTest.class.getName());
 
-	@Deployment(name = "ejb-jpa-test")
+	@Deployment(name = "user-role-test")
 	public static Archive<?> createTestArchive() {
-		final WebArchive war = ShrinkWrap.create(WebArchive.class, "ejb-jpa-test.war");
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "user-role-test.war");
 		war.addClass(UserService.class);
 		war.addClass(UserServiceBean.class);
 
