@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kapx.jboss.javaee6.dao.AbstractBaseDAO;
+import com.kapx.jboss.javaee6.dao.AbstractJpaDAO;
 import com.kapx.jboss.javaee6.dao.RoleDAO;
 import com.kapx.jboss.javaee6.dao.UserDAO;
 import com.kapx.jboss.javaee6.dao.impl.RoleDAOImpl;
@@ -41,7 +41,7 @@ public class UserServiceTest {
 		war.addClass(Role.class);
 		war.addClass(User.class);
 
-		war.addClass(AbstractBaseDAO.class);
+		war.addClass(AbstractJpaDAO.class);
 		war.addClass(RoleDAO.class);
 		war.addClass(RoleDAOImpl.class);
 		war.addClass(UserDAO.class);

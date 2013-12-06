@@ -7,12 +7,12 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kapx.jboss.javaee6.dao.AbstractBaseDAO;
+import com.kapx.jboss.javaee6.dao.AbstractJpaDAO;
 import com.kapx.jboss.javaee6.dao.StudentDAO;
 import com.kapx.jboss.javaee6.entity.Student;
 
 @Named("studentDAO")
-public class StudentDAOImpl extends AbstractBaseDAO<Student, Long> implements StudentDAO {
+public class StudentDAOImpl extends AbstractJpaDAO<Student, Long> implements StudentDAO {
 
 	private static final Logger LOG = LoggerFactory.getLogger(StudentDAOImpl.class.getName());
 

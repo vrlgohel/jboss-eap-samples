@@ -16,9 +16,10 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kapx.jboss.javaee6.dao.AbstractBaseDAO;
+import com.kapx.jboss.javaee6.dao.AbstractJpaDAO;
 import com.kapx.jboss.javaee6.dao.StudentDAO;
 import com.kapx.jboss.javaee6.dao.impl.StudentDAOImpl;
+import com.kapx.jboss.javaee6.entity.Address;
 import com.kapx.jboss.javaee6.entity.Student;
 import com.kapx.jboss.javaee6.service.impl.StudentServiceBean;
 
@@ -33,8 +34,9 @@ public class StudentServiceTest {
 		war.addClass(StudentServiceBean.class);
 
 		war.addClass(Student.class);
+		war.addClass(Address.class);
 
-		war.addClass(AbstractBaseDAO.class);
+		war.addClass(AbstractJpaDAO.class);
 		war.addClass(StudentDAO.class);
 		war.addClass(StudentDAOImpl.class);
 		war.addClass(StudentDAO.class);
@@ -52,11 +54,13 @@ public class StudentServiceTest {
 	@Test
 	@InSequence(1)
 	public void test_insert_student() throws Exception {
-		Student entity = new Student("Aditi", "Singh", "aditi@gmail.com");
-		entity = studentServiceEJB.save(entity);
-		assertNotNull(entity);
-		assertNotNull(entity.getId());
-		LOG.info("Create new Student with ID {}", entity.getId());
+		Address address = new Address("1830", "Gateway Drive", "San Mateo", "CA", "94403");
+
+		Student student = new Student("Aditi", "Singh", "aditi@gmail.com", address);
+		student = studentServiceEJB.save(student);
+		assertNotNull(student);
+		assertNotNull(student.getId());
+		LOG.info("Create new Student with ID {}", student.getId());
 	}
 
 }

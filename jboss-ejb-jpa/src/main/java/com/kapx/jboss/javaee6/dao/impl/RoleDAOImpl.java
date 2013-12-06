@@ -11,12 +11,12 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kapx.jboss.javaee6.dao.AbstractBaseDAO;
+import com.kapx.jboss.javaee6.dao.AbstractJpaDAO;
 import com.kapx.jboss.javaee6.dao.RoleDAO;
 import com.kapx.jboss.javaee6.entity.Role;
 
 @Named("roleDAO")
-public class RoleDAOImpl extends AbstractBaseDAO<Role, Long> implements RoleDAO {
+public class RoleDAOImpl extends AbstractJpaDAO<Role, Long> implements RoleDAO {
 	private static final Logger LOG = LoggerFactory.getLogger(RoleDAOImpl.class.getName());
 
 	@PersistenceContext(unitName = "mysql-persistence-unit")

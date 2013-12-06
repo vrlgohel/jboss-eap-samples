@@ -18,14 +18,14 @@ import javax.persistence.TypedQuery;
  *            type of Serializable primary key
  * 
  */
-public abstract class AbstractBaseDAO<T, PK extends Serializable> {
+public abstract class AbstractJpaDAO<T, PK extends Serializable> {
 
 	@PersistenceContext(unitName = "mysql-persistence-unit")
 	private EntityManager entityManager;
 
 	private Class<T> persistentClass;
 
-	protected AbstractBaseDAO(final Class<T> persistentClass) {
+	protected AbstractJpaDAO(final Class<T> persistentClass) {
 		this.persistentClass = persistentClass;
 	}
 
