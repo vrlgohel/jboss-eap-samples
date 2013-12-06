@@ -1,5 +1,7 @@
 package com.kapx.jboss.javaee6.service.impl;
 
+import java.util.Collection;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -27,14 +29,25 @@ public class UserServiceBean implements UserService {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public User save(final User user) {
-		return userDAO.save(user);
+	public User save(final User entity) {
+		return userDAO.save(entity);
 	}
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Role findByRole(final String role) {
-		return roleDAO.findByRole(role);
+	public Role findByRole(final String roleName) {
+		return roleDAO.findByRole(roleName);
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Role save(Role entity) {
+		return roleDAO.save(entity);
+	}
+
+	@Override
+	public Collection<Role> findAllRoles() {
+		return roleDAO.findAllRoles();
 	}
 
 }

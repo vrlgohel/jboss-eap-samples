@@ -22,12 +22,12 @@ public class StudentDAOImpl extends AbstractBaseDAO<Student, Long> implements St
 	public Student save(final Student entity) {
 		super.persist(entity);
 
-		LOG.debug("persist Student object " + entity.getId());
+		LOG.info("persist Student object with ID {} ", entity.getId());
 		return entity;
 	}
 
 	public void delete(final Student entity) {
-		LOG.debug("Removing Student entity for ID {}", entity.getId());
+		LOG.info("Removing Student entity for ID {}", entity.getId());
 		super.delete(entity);
 	}
 

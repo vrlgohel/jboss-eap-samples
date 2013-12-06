@@ -29,19 +29,19 @@ public abstract class AbstractBaseDAO<T, PK extends Serializable> {
 		this.persistentClass = persistentClass;
 	}
 
-	public void persist(T entity) {
+	public void persist(final T entity) {
 		entityManager.persist(entity);
 	}
 
-	public void update(T entity) {
+	public void update(final T entity) {
 		entityManager.merge(entity);
 	}
 
-	public T find(PK pk, Class<T> t) {
+	public T find(final PK pk, final Class<T> t) {
 		return entityManager.find(t, pk);
 	}
 
-	public void delete(T entity) {
+	public void delete(final T entity) {
 		entityManager.remove(entity);
 	}
 
@@ -51,8 +51,13 @@ public abstract class AbstractBaseDAO<T, PK extends Serializable> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<T> findAll(int page, int pageSize) {
-		TypedQuery<T> query = (TypedQuery<T>) entityManager.createQuery("select obj from " + this.persistentClass.getName() + " obj");
+	public Collection<T> findAll(final int page, final int pageSize) {
+		/**
+		 * The TypedQuery interface is the preferred when the result type is
+		 * known. The Query interface when the result type is Object or in
+		 * dynamic queries when the result type may not be known ahead of time.
+		 */
+		final TypedQuery<T> query = (TypedQuery<T>) entityManager.createQuery("select obj from " + this.persistentClass.getName() + " obj");
 
 		query.setFirstResult(page * pageSize);
 		query.setMaxResults(pageSize);

@@ -22,12 +22,12 @@ public class UserDAOImpl extends AbstractBaseDAO<User, Long> implements UserDAO 
 	public User save(final User entity) {
 		super.persist(entity);
 
-		LOG.info("persist user object " + entity.getId());
+		LOG.info("persist User object with ID {} ", entity.getId());
 		return entity;
 	}
 
 	public void delete(final User entity) {
-		LOG.debug("Removing User entity for ID {}", entity.getId());
+		LOG.info("Removing User entity for ID {}", entity.getId());
 		super.delete(entity);
 	}
 }
