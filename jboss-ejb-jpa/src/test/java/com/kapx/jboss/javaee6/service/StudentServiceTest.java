@@ -52,11 +52,7 @@ public class StudentServiceTest {
 	@Test
 	@InSequence(1)
 	public void test_insert_student() throws Exception {
-		Student entity = new Student();
-		entity.setFirstName("Aditi");
-		entity.setLastName("Singh");
-		entity.setEmail("aditi@gmail.com");
-
+		Student entity = new Student("Aditi", "Singh", "aditi@gmail.com");
 		entity = studentServiceEJB.save(entity);
 		assertNotNull(entity);
 		assertNotNull(entity.getId());

@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Collection;
-import java.util.Date;
 
 import javax.ejb.EJB;
 
@@ -63,16 +62,12 @@ public class UserServiceTest {
 	public void test_insert_roles() throws Exception {
 		Role entity = null;
 
-		Role roleAdmin = new Role();
-		roleAdmin.setRole("ROLE_ADMIN");
-		entity = userServiceEJB.save(roleAdmin);
+		entity = userServiceEJB.save(new Role("ROLE_ADMIN"));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
 		LOG.info("Create new Role with ID {}", entity.getId());
 
-		Role roleUser = new Role();
-		roleUser.setRole("ROLE_USER");
-		entity = userServiceEJB.save(roleUser);
+		entity = userServiceEJB.save(new Role("ROLE_USER"));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
 		LOG.info("Create new Role with ID {}", entity.getId());
@@ -102,35 +97,18 @@ public class UserServiceTest {
 	@InSequence(4)
 	public void test_insert_user() throws Exception {
 		User entity = null;
+		Role role = null;
 
-		Role roleAdmin = userServiceEJB.findByRole("ROLE_ADMIN");
-		User adminUser = new User();
-		adminUser.setFirstName("DE");
-		adminUser.setLastName("KAPX");
-		adminUser.setUsername("dekapx");
-		adminUser.setPassword("password");
-		adminUser.setEmail("dekapx@gmail.com");
-		adminUser.setInsertTime(new Date());
-		adminUser.setUpdateTime(new Date());
-		adminUser.setRole(roleAdmin);
+		role = userServiceEJB.findByRole("ROLE_ADMIN");
 
-		entity = userServiceEJB.save(adminUser);
+		entity = userServiceEJB.save(new User("admin", "password", "Admin", "User", "admin@myemail.com", role));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
 		LOG.info("Create new User entity with ID {} and username {}", entity.getId(), entity.getUsername());
 
-		Role roleUser = userServiceEJB.findByRole("ROLE_USER");
-		User user = new User();
-		user.setFirstName("DE");
-		user.setLastName("KAPX");
-		user.setUsername("dekapx");
-		user.setPassword("password");
-		user.setEmail("dekapx@gmail.com");
-		user.setInsertTime(new Date());
-		user.setUpdateTime(new Date());
-		user.setRole(roleUser);
+		role = userServiceEJB.findByRole("ROLE_USER");
 
-		entity = userServiceEJB.save(user);
+		entity = userServiceEJB.save(new User("test-user", "password", "Test", "User", "test-user@myemail.com", role));
 		assertNotNull(entity);
 		assertNotNull(entity.getId());
 		LOG.info("Create new User entity with ID {} and username {}", entity.getId(), entity.getUsername());
