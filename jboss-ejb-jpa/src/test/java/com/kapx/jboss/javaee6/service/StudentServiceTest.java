@@ -43,8 +43,12 @@ public class StudentServiceTest {
 		war.addClass(StudentDAOImpl.class);
 
 		war.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-		war.addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml");
-		war.addAsWebInfResource("test-mysql-ds.xml");
+		// war.addAsResource("META-INF/test-persistence.xml",
+		// "META-INF/persistence.xml");
+		// war.addAsWebInfResource("test-mysql-ds.xml");
+
+		war.addAsResource("META-INF/test-h2db-persistence.xml", "META-INF/persistence.xml");
+		war.addAsWebInfResource("test-h2db-ds.xml");
 		return war;
 	}
 
