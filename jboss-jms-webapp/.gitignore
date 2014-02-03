@@ -29,6 +29,7 @@ arq-perf
 
 # jboss files
 transaction.log
+*.log
 
 # python
 .pydevproject
